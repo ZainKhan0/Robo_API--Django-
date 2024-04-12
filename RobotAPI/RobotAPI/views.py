@@ -1,3 +1,4 @@
+import os
 import tempfile
 
 from django.http import JsonResponse
@@ -71,3 +72,7 @@ def execute_tests(request):
         return JsonResponse({'error': 'Invalid JSON Payload'}, status=400)
     except Exception as e:
         return JsonResponse({'error': 'An unexpected error occurred: ' + str(e)}, status=500)
+
+    finally:
+        os.remove(path)
+        #print("Robo file removed Successfully")
