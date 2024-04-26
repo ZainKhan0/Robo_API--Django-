@@ -11,16 +11,18 @@ from robot.model import TestSuite, TestCase, Keyword
 
 def index(request):
     return HttpResponse("Welcome to the root URL.")
+
+
 def create_robot_file(data, file_path):
     with open(file_path, 'w') as file:
         file.write("*** Settings ***\n")
         file.write("Library    SeleniumLibrary\n\n")
-
         file.write("*** Test Cases ***\n")
         for test in data['tests']:
             title = test['title']
             steps = test['steps']
             file.write(f"{title}\n")
+
             # Add WebDriver initialization step
             file.write(f"    Open Browser    url=about:blank    browser=chrome\n")
             for step in steps:
@@ -42,9 +44,11 @@ def execute_tests(request):
         # Load JSON data from the request body
         data = json.loads(request.body)
         tests = data.get('tests', [])
-        robo_file_path = create_robot_file(data, path)
 
-        test_results = []
+        # Checking data contents
+        #print(data)
+
+        robo_file_path = create_robot_file(data, path)
 
         # Create a new test suite
         builder = TestSuiteBuilder()

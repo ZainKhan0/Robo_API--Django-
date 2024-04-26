@@ -1,6 +1,6 @@
 *** Robot API Automation ***
 
-1) These requirements should be full-filled Robot framework (version 7.0), Django framework (version 5.0.4).
+1) These requirements should be full-filled Robot framework (version 7.0), Django framework (version 5.0.4) pip (24.0).
 
 2) Browser cookies should be enabled, in some cases not enabling the cookies causes issues.
 
